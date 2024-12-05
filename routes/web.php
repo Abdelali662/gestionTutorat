@@ -16,6 +16,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layout.nav');
 });
+
 Route::get('/tuteur', function () {
     return view('tuteur.index'); // 'tuteur' est le dossier, 'index' est le fichier
 });
+Route::get('/tutore', function () {
+    return view('tutore.index'); // 'tuteur' est le dossier, 'index' est le fichier
+});
+
+
+// Authentification routes
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/logout', function (\Illuminate\Http\Request $request) {
+    Auth::logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect('/login');
+})->name('logout');

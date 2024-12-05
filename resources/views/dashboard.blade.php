@@ -1,7 +1,7 @@
-@extends('layouts.main')
+@extends('layout.nav')
 
-@section('content')
-
+@section('contenue')
+<h1>DASHBOARD</h1>
 
 
 @endsection

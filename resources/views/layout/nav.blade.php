@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Big STOR</title>
+    <title>Tutorat</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -32,6 +32,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
     <div class="wrapper">
 
         <!-- Preloader -->
@@ -48,12 +49,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
+                
             </ul>
 
             <!-- Right navbar links -->
@@ -184,6 +180,7 @@
                 </li>
             </ul>
         </nav>
+
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
@@ -192,7 +189,8 @@
             <a href="{{url('/')}}" class="brand-link">
                 <img src="{{ asset('assets/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">BIG STORE</span>
+                <span class="brand-text font-weight-light">TUTORAT</span>
+
             </a>
 
             <!-- Sidebar -->
@@ -204,7 +202,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block"></a>
+                        <a href="#" class="d-block"> {{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -228,29 +226,14 @@
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
+                      
                         <li class="nav-item">
-                            <a href="#" class="nav-link active">
-                                <i class="nav-icon fas fa-users"></i>
+                            <a href="{{url('home')}}" class="nav-link">
+                                <i class="nav-icon fas fa-columns"></i>
                                 <p>
-                                    Famille/Produit
-                                    <i class="right fas fa-angle-left"></i>
+                                    dashboard
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{url('tuteur')}}" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Famille</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('produit')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Produit</p>
-                                    </a>
-                                </li>
-
-                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{url('tuteur')}}" class="nav-link">
@@ -260,129 +243,21 @@
                                 </p>
                             </a>
                         </li>
+                       
+                       
+                        
+                      
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-shopping-basket"></i>
-                                <p>
-                                    Articles/Stock
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
+                            <a href="{{ route('logout') }}" class="nav-link"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>Déconnexion</p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{url('article')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Article</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('famille')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Famille</p>
-                                    </a>
-                                </li>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </li>
 
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-dolly"></i>
-                                <p>
-                                    Achat/Vente
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{url('bonachat')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Achat</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('bonlivraison')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Vente</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
-                                <p>
-                                    Parametres
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{url('typeclient')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Type Client</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('typefournisseur')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Type Fournisseur</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('comptebancaire')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Compte Bancaire</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('tva')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>TVA</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('typedepot')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Type Depots</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('depot')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Depots</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('marque')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Marque</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('modereglemet')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Modes Reglements</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{url('unite')}}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Unites</p>
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>
-                                    Widgets
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->
@@ -397,10 +272,10 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            <strong>Copyright &copy; 2025-2026 <a href="#">Tutorat</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.1.0
+                <b>Version</b>
             </div>
         </footer>
 
