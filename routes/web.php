@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,3 +38,10 @@ Route::post('/logout', function (\Illuminate\Http\Request $request) {
     $request->session()->regenerateToken();
     return redirect('/login');
 })->name('logout');
+use App\Http\Controllers\Auth\RegisterController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/edit', [RegisterController::class, 'editProfile'])->name('profile.edit');
+    Route::post('/profile/update', [RegisterController::class, 'updateProfile'])->name('profile.update');
+});
+
